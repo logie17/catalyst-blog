@@ -1,0 +1,7 @@
+# NAME
+
+Logans Personal Blog
+
+# DESCRIPTION
+
+Determined to stay hip I'm porting my blog over to catalyst and plack.Run script/blog_server.pl to test the application.
