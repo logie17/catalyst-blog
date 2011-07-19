@@ -1,0 +1,9 @@
+        <div class="headerbox_orange">entrees</div>
+            <div class="box_brown">
+                <ul class="dkarrow">
+                    <li><a href="/">blog</a></li>
+                    <li><a href="/pages/misc/resume">resume</a></li>
+                    <li><a href="/pages/misc/about">about</a></li>
+                </ul>
+            </div>
+        </div>
