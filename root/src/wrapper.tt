@@ -3,6 +3,12 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title>Logan's Blog</title>
+        <meta name="author" content="Logan Bell" />
+        <meta name="copyright" content="Copyright 2011 (c) by Logan Bell" />
+        <meta name="description" content="Ramblings of a lumber jack" />
+        <meta name="keywords" content="Logan Bell" />
+        <meta name="robots" content="all" />
+        <link rel="stylesheet" href="/static/styles/base.css" type="text/css" />
     </head>
     <body>
     [% content %]
