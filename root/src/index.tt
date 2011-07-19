@@ -15,7 +15,9 @@
             </div>
             <br/><br/>
             <div id="content">
-
+                [% FOREACH entry IN entries -%]
+                    [% entry.title %]
+                [% END %]
             </div>
         </div>
     </div>
