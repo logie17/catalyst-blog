@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../images/bgimg.png');   
+    background-image: url('/static/images/bgimg.png');   
     background-attachment: fixed; 
     background-repeat: repeat-x; 
     background-color: #FF6633;
@@ -37,7 +37,7 @@ img {
 #header {
     position: relative;
     height: 104px;
-    background-image: url('../images/headerbgimg.png');
+    background-image: url('/static/images/headerbgimg.png');
     background-repeat: repeat-x;
 }
 
@@ -88,7 +88,7 @@ img {
     right: 0;
     bottom: 0;
     width: 24px;
-    background-image: url('../images/squares.png'); 
+    background-image: url('/static/images/squares.png'); 
     border-top: solid 1px #000;
     background-repeat: repeat-y; 
 }
@@ -166,7 +166,7 @@ ul.dkarrow {
 }
 
 ul.dkarrow li {
-    background:  url("../images/lftarrow.png") transparent 30px no-repeat;
+    background:  url("/static/images/lftarrow.png") transparent 30px no-repeat;
     margin: 0 0 3px 0;
     padding: 5px 0 5px 40px;
     background-color: #7C6646;
@@ -232,7 +232,7 @@ ul.dkarrow li {
     left: 0;
     top: 0;
     background-color: #FFF;
-    background-image: url('../images/headerentrybg.png');
+    background-image: url('/static/images/headerentrybg.png');
     background-repeat: repeat-x;
     top: 1px;
 }
@@ -265,7 +265,7 @@ ul.dkarrow li {
 
 /*Widgets*/
 #login {
-    background-image: url('../images/login.png');
+    background-image: url('/static/images/login.png');
     height: 21px;
     width: 44px;
     margin: 2px 0 0 55px;
