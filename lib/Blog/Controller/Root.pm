@@ -1,5 +1,6 @@
 package Blog::Controller::Root;
 use Moose;
+use CatalystX::Syntax::Action;
 use namespace::autoclean;
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -26,11 +27,9 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
-
-    $c->stash( entries  => [ $c->model('DB::Entry')->all ] );
-    $c->stash( template => 'index.tt' );
+action index :Path :Args(0) {
+    $ctx->stash( entries  => [ $ctx->model('DB::Entry')->all ] );
+    $ctx->stash( template => 'index.tt' );
 }
 
 =head2 default
@@ -39,10 +38,9 @@ Standard 404 error page
 
 =cut
 
-sub default :Path {
-    my ( $self, $c ) = @_;
-    $c->response->body( 'Page not found' );
-    $c->response->status(404);
+action default :Path {
+    $ctx->response->body( 'Page not found' );
+    $ctx->response->status(404);
 }
 
 =head2 end
