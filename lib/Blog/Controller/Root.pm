@@ -5,11 +5,29 @@ use namespace::autoclean;
 
 BEGIN { extends 'Catalyst::Controller' }
 
-#
-# Sets the actions in this controller to be registered with no prefix
-# so they function identically to actions created in MyApp.pm
-#
 __PACKAGE__->config(namespace => '');
+
+action begin : Chained('/') PathPrefix CaptureArgs(0) {
+    $ctx->stash( entries  => [ $ctx->model('DB::Entry')->all ] );
+    $ctx->stash( template => 'index.tt' );
+}
+
+action default_landing : Chained('begin') PathPart('') Args(0) {
+
+}
+
+action default :Path {
+    $ctx->response->body( 'Page not found' );
+    $ctx->response->status(404);
+}
+
+
+sub end : ActionClass('RenderView') {}
+
+
+__PACKAGE__->meta->make_immutable;
+
+1;
 
 =head1 NAME
 
@@ -25,43 +43,10 @@ Blog::Controller::Root - Root Controller for Blog
 
 The root page (/)
 
-=cut
-
-action index :Path :Args(0) {
-    $ctx->stash( entries  => [ $ctx->model('DB::Entry')->all ] );
-    $ctx->stash( template => 'index.tt' );
-}
-
 =head2 default
 
 Standard 404 error page
 
-=cut
-
-action default :Path {
-    $ctx->response->body( 'Page not found' );
-    $ctx->response->status(404);
-}
-
 =head2 end
 
 Attempt to render a view, if needed.
-
-=cut
-
-sub end : ActionClass('RenderView') {}
-
-=head1 AUTHOR
-
-Logan Bell
-
-=head1 LICENSE
-
-This library is free software. You can redistribute it and/or modify
-it under the same terms as Perl itself.
-
-=cut
-
-__PACKAGE__->meta->make_immutable;
-
-1;
