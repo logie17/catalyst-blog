@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "PassphraseColumn");
 
 =head1 NAME
 
@@ -87,8 +87,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-07-16 22:45:55
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:918qKG6G4OH4LlbIxlvaFA
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-10 15:07:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:f+LLFAmONnbAt1OMUmsVGw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
