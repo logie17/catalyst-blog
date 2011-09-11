@@ -12,15 +12,7 @@ action begin : Chained('/') PathPrefix CaptureArgs(0) {
     $ctx->stash( template => 'index.tt' );
 }
 
-action default_landing : Chained('begin') PathPart('') Args(0) {
-
-}
-
-action default :Path {
-    $ctx->response->body( 'Page not found' );
-    $ctx->response->status(404);
-}
-
+action default_landing : Chained('begin') PathPart('') Args(0) { }
 
 sub end : ActionClass('RenderView') {}
 
