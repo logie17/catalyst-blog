@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "PassphraseColumn");
 
 =head1 NAME
 
@@ -62,26 +62,6 @@ __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 user
-
-Type: belongs_to
-
-Related object: L<Blog::Schema::Result::User>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "user",
-  "Blog::Schema::Result::User",
-  { id => "user_id" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "CASCADE",
-    on_update     => "CASCADE",
-  },
-);
-
 =head2 entry
 
 Type: belongs_to
@@ -103,8 +83,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-07-16 22:45:55
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:v/DpTZjcEls9IYhdRj3gkA
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-10 15:07:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:M/O5DPeKsllOfh9qprc3kQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

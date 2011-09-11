@@ -11,7 +11,7 @@ use MooseX::NonMoose;
 use namespace::autoclean;
 extends 'DBIx::Class::Core';
 
-__PACKAGE__->load_components("InflateColumn::DateTime");
+__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "PassphraseColumn");
 
 =head1 NAME
 
@@ -19,7 +19,7 @@ Blog::Schema::Result::User
 
 =cut
 
-__PACKAGE__->table("user");
+__PACKAGE__->table("users");
 
 =head1 ACCESSORS
 
@@ -31,27 +31,33 @@ __PACKAGE__->table("user");
 
 =head2 username
 
-  data_type: 'varchar'
+  data_type: 'text'
   is_nullable: 1
-  size: 250
 
 =head2 password
 
-  data_type: 'varchar'
+  data_type: 'text'
   is_nullable: 1
-  size: 250
 
-=head2 full_name
+=head2 email_address
 
-  data_type: 'varchar'
+  data_type: 'text'
   is_nullable: 1
-  size: 250
 
-=head2 email
+=head2 first_name
 
-  data_type: 'varchar'
+  data_type: 'text'
   is_nullable: 1
-  size: 250
+
+=head2 last_name
+
+  data_type: 'text'
+  is_nullable: 1
+
+=head2 active
+
+  data_type: 'integer'
+  is_nullable: 1
 
 =cut
 
@@ -59,37 +65,52 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "username",
-  { data_type => "varchar", is_nullable => 1, size => 250 },
+  { data_type => "text", is_nullable => 1 },
   "password",
-  { data_type => "varchar", is_nullable => 1, size => 250 },
-  "full_name",
-  { data_type => "varchar", is_nullable => 1, size => 250 },
-  "email",
-  { data_type => "varchar", is_nullable => 1, size => 250 },
+  { data_type => "text", is_nullable => 1 },
+  "email_address",
+  { data_type => "text", is_nullable => 1 },
+  "first_name",
+  { data_type => "text", is_nullable => 1 },
+  "last_name",
+  { data_type => "text", is_nullable => 1 },
+  "active",
+  { data_type => "integer", is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("id");
 
 =head1 RELATIONS
 
-=head2 comments
+=head2 user_roles
 
 Type: has_many
 
-Related object: L<Blog::Schema::Result::Comment>
+Related object: L<Blog::Schema::Result::UserRole>
 
 =cut
 
 __PACKAGE__->has_many(
-  "comments",
-  "Blog::Schema::Result::Comment",
+  "user_roles",
+  "Blog::Schema::Result::UserRole",
   { "foreign.user_id" => "self.id" },
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-07-16 22:45:55
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:mb1OwmkjLESvoOC4t0Aolw
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2011-09-10 15:08:02
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:/vLq0d/3b1D3fj8Pa6Ywrg
 
+__PACKAGE__->add_columns(
+    'password' => {
+        passphrase       => 'rfc2307',
+        passphrase_class => 'SaltedDigest',
+        passphrase_args  => {
+            algorithm   => 'SHA-1',
+            salt_random => 20.
+        },
+        passphrase_check_method => 'check_password',
+    },
+);
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
