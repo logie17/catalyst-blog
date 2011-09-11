@@ -20,6 +20,10 @@ use Catalyst qw/
     -Debug
     ConfigLoader
     Static::Simple
+    Authentication
+    Session
+    Session::Store::File
+    Session::State::Cookie
 /;
 
 extends 'Catalyst';
@@ -39,6 +43,20 @@ __PACKAGE__->config(
     name => 'Blog',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
+    'Plugin::Authentication' => {
+        default => {
+            class           => 'SimpleDB',
+            user_model      => 'DB::User',
+            password_type   => 'clear',
+        },
+    },
+    'Plugin::Authentication' => {
+        default => {
+            class           => 'SimpleDB',
+            user_model      => 'DB::User',
+            password_type   => 'self_check',
+        },
+    },
 );
 
 # Start the application
