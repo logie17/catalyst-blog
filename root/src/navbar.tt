@@ -5,6 +5,11 @@
                     <li><a href="/">blog</a></li>
                     <li><a href="/pages/resume">resume</a></li>
                     <li><a href="/pages/about">about</a></li>
+                    [% IF c.user_exists %]
+                    <li><a href="[% c.uri_for('/logout') %]">logout</a></li>
+                    [% ELSE %]
+                    <li><a href="[% c.uri_for('/login') %]">login</a></li>
+                    [% END %]
                 </ul>
             </div>
             <div class="box_clear">
