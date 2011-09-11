@@ -8,11 +8,12 @@ BEGIN { extends 'Catalyst::Controller' }
 __PACKAGE__->config(namespace => '');
 
 action begin : Chained('/') PathPrefix CaptureArgs(0) {
+}
+
+action default_landing : Chained('begin') PathPart('') Args(0) { 
     $ctx->stash( entries  => [ $ctx->model('DB::Entry')->all ] );
     $ctx->stash( template => 'index.tt' );
 }
-
-action default_landing : Chained('begin') PathPart('') Args(0) { }
 
 sub end : ActionClass('RenderView') {}
 
