@@ -11,6 +11,19 @@
         <link rel="stylesheet" href="/static/styles/base.css" type="text/css" />
     </head>
     <body>
-    [% content %]
+    <div id="page">
+        <div id="header">
+            <div id="title"><h1>Logan Bell</h1></div>
+            <div id="subtitle">Figlet</div>
+        </div>
+        <div id="yellowbar"></div>
+        <div id="wrapper">
+            [% INCLUDE navbar.tt %]
+            <div id="content">
+                [% content %]
+            </div>
+            <div id="squares"></div>
+        </div>
+    </div>
     </body>
 </html>
