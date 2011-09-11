@@ -13,7 +13,6 @@ CREATE TABLE comment (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     comment TEXT,
     entry_id INTEGER REFERENCES entry(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    user_id INTEGER REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE author(
@@ -22,14 +21,6 @@ CREATE TABLE author(
     last_name VARCHAR(250), 
     username VARCHAR(250), 
     password VARCHAR(250)
-);
-
-CREATE TABLE user (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username VARCHAR(250),
-    password VARCHAR(250),
-    full_name VARCHAR(250),
-    email VARCHAR(250)
 );
 
 INSERT INTO "author" VALUES(1,'Logan',NULL,'logie','e10adc3949ba59abbe56e057f20f883e');
