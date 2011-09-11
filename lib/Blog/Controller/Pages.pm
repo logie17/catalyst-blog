@@ -7,12 +7,14 @@ BEGIN {extends 'Catalyst::Controller'; }
 
 action begin : Chained('../begin') PathPart('pages') CaptureArgs(0) { }
 
-action resume : Chained('begin') Args(0) {
-    $ctx->stash( template => 'resume.tt' );
-}
+action resume : Chained('begin') Args(0) { }
 
-action about :Chained('begin') Args(0) {
-    $ctx->stash( template => 'about.tt' );
+action about :Chained('begin') Args(0) { }
+
+action admin :Chained('begin') Args(0){ 
+    if ( !$ctx->user_exists ) {
+        $ctx->response->redirect($ctx->uri_for('/'));
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
