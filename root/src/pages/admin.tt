@@ -1,1 +1,21 @@
-This will be admin awesomeness
+<p>New Post:</p>
+<form method="post" action="[% c.uri_for('/admin/new_entry') %]">
+  <table>
+    <tr>
+      <td>Title of Post:</td>
+      <td><input type="text" name="title" /></td>
+     <tr>
+       <td colspan="2">Post Contents (markdown):</td>
+     </tr>
+     <tr>
+       <td colspan="2">
+          <textarea name="markdown_entry" cols="50" rows="20"></textarea>
+       </td>
+     </tr>
+     <tr>
+        <td colspan="2">
+          <input type="submit" />
+        </td>
+     </tr>
+  </table>
+</form>
