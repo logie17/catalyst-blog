@@ -328,4 +328,11 @@ input.submit {
     font-size: 14px;
 }
 
+.error_message {
+    border: 1px solid #B6B4B4;
+    font-style: italic;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
 
