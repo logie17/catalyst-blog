@@ -27,17 +27,19 @@ sub index :Path :Args(0) {
     my $username = $c->request->params->{username};
     my $password = $c->request->params->{password};
 
-    if ($username && $password) {
-        if ($c->authenticate({ username => $username,
-                               password => $password  } )) {
-            $c->response->redirect($c->uri_for('/'));
-            return;
+    if ( $c->request->method eq 'POST' ) {
+        if ($username && $password) {
+            if ($c->authenticate({ username => $username,
+                                   password => $password  } )) {
+                $c->response->redirect($c->uri_for('/'));
+                return;
+            } else {
+                $c->stash(error_msg => "Bad username or password.");
+            }
         } else {
-            $c->stash(error_msg => "Bad username or password.");
+            $c->stash(error_msg => "Empty username or password.")
+                unless ($c->user_exists);
         }
-    } else {
-        $c->stash(error_msg => "Empty username or password.")
-            unless ($c->user_exists);
     }
 
     # If either of above don't work out, send to the login page
